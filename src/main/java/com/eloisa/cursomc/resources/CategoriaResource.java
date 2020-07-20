@@ -1,4 +1,7 @@
-package com.eloisa.cursomc;
+package com.eloisa.cursomc.resources;
+
+import com.eloisa.cursomc.domain.Categoria;
+import com.eloisa.cursomc.services.CategoriaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

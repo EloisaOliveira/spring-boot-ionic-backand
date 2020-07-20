@@ -2,6 +2,11 @@ package com.eloisa.cursomc;
 
 import java.util.Arrays;
 
+import com.eloisa.cursomc.domain.Categoria;
+import com.eloisa.cursomc.domain.Produto;
+import com.eloisa.cursomc.repositories.CategoriaRepository;
+import com.eloisa.cursomc.repositories.ProdutoRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
