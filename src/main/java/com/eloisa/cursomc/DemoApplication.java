@@ -4,10 +4,15 @@ import java.util.Arrays;
 
 import com.eloisa.cursomc.domain.Categoria;
 import com.eloisa.cursomc.domain.Cidade;
+import com.eloisa.cursomc.domain.Cliente;
 import com.eloisa.cursomc.domain.Estado;
 import com.eloisa.cursomc.domain.Produto;
+import com.eloisa.cursomc.domain.enums.Endereco;
+import com.eloisa.cursomc.domain.enums.TipoCliente;
 import com.eloisa.cursomc.repositories.CategoriaRepository;
 import com.eloisa.cursomc.repositories.CidadeRepository;
+import com.eloisa.cursomc.repositories.ClienteRepository;
+import com.eloisa.cursomc.repositories.EnderecoRepository;
 import com.eloisa.cursomc.repositories.EstadoRepository;
 import com.eloisa.cursomc.repositories.ProdutoRepository;
 
@@ -27,6 +32,10 @@ public class DemoApplication implements CommandLineRunner{
 	private EstadoRepository estadoRepository;
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	@Autowired
+	private ClienteRepository clienteRepository;
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -63,6 +72,17 @@ public class DemoApplication implements CommandLineRunner{
 
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+
+		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
+		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
+
+		Endereco e1 = new Endereco(null,"Rua Flores", "300", "Apto 303", "Jardim", "38220834", cli1, c1);
+		Endereco e2 = new Endereco(null,"Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c2);
+
+		cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
+
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(e1,e2));
 
 	}
 
