@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 
 import com.eloisa.cursomc.domain.Cidade;
 import com.eloisa.cursomc.domain.Cliente;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Endereco implements Serializable{
@@ -25,6 +26,7 @@ public class Endereco implements Serializable{
     private String bairro;
     private String cep;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="cliente_id")
     private Cliente cliente;
