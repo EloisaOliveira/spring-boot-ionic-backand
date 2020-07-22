@@ -1,11 +1,11 @@
 package com.eloisa.cursomc.repositories;
 
-import com.eloisa.cursomc.domain.Endereco;
+import com.eloisa.cursomc.domain.Pedido;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EnderecoRepository extends JpaRepository<Endereco, Integer> {
+public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
     
 }

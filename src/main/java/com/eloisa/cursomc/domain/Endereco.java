@@ -1,4 +1,4 @@
-package com.eloisa.cursomc.domain.enums;
+package com.eloisa.cursomc.domain;
 
 import java.io.Serializable;
 
@@ -9,8 +9,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-import com.eloisa.cursomc.domain.Cidade;
-import com.eloisa.cursomc.domain.Cliente;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
