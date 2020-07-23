@@ -4,9 +4,11 @@ import java.util.Optional;
 
 import com.eloisa.cursomc.domain.Categoria;
 import com.eloisa.cursomc.repositories.CategoriaRepository;
+import com.eloisa.cursomc.services.exception.DataIntegrityException;
 import com.eloisa.cursomc.services.exception.ObjectNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -31,4 +33,13 @@ public class CategoriaService {
         return repo.save(obj);
     }
     
+    public void delete(Integer id){
+        find(id);
+        try {
+            repo.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e){
+            throw new DataIntegrityException("Não é possivel excluir uma categoria que possui produtos");
+        }
+    }
 }

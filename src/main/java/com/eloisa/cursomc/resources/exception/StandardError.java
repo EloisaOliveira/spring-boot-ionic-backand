@@ -1,4 +1,4 @@
-package com.eloisa.cursomc.services.exception;
+package com.eloisa.cursomc.resources.exception;
 
 import java.io.Serializable;
 
