@@ -1,6 +1,7 @@
 package com.eloisa.cursomc.services;
 
 import java.util.Optional;
+import java.util.List;
 
 import com.eloisa.cursomc.domain.Categoria;
 import com.eloisa.cursomc.repositories.CategoriaRepository;
@@ -41,5 +42,9 @@ public class CategoriaService {
         catch (DataIntegrityViolationException e){
             throw new DataIntegrityException("Não é possivel excluir uma categoria que possui produtos");
         }
+    }
+
+    public List<Categoria> findAll(){
+        return repo.findAll();
     }
 }
