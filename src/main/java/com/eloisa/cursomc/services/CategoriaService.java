@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.List;
 
 import com.eloisa.cursomc.domain.Categoria;
+import com.eloisa.cursomc.dto.CategoriaDTO;
 import com.eloisa.cursomc.repositories.CategoriaRepository;
 import com.eloisa.cursomc.services.exception.DataIntegrityException;
 import com.eloisa.cursomc.services.exception.ObjectNotFoundException;
@@ -54,5 +55,9 @@ public class CategoriaService {
     public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
         return repo.findAll(pageRequest);
+    }
+
+    public Categoria fromDTO(CategoriaDTO objDto){
+        return new Categoria(objDto.getId(), objDto.getNome());
     }
 }
