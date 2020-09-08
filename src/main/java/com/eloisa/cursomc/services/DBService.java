@@ -1,6 +1,7 @@
-package com.eloisa.cursomc;
+package com.eloisa.cursomc.services;
 
 import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.Arrays;
 
 import com.eloisa.cursomc.domain.Categoria;
@@ -27,14 +28,12 @@ import com.eloisa.cursomc.repositories.PedidoRepository;
 import com.eloisa.cursomc.repositories.ProdutoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Service;
 
-@SpringBootApplication
-public class DemoApplication implements CommandLineRunner{
+@Service
+public class DBService {
 
-	@Autowired
+    @Autowired
 	private CategoriaRepository categoriaRepository;
 	@Autowired
 	private ProdutoRepository produtoRepository;
@@ -52,14 +51,9 @@ public class DemoApplication implements CommandLineRunner{
 	private PagamentoRepository pagamentoRepository;
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
-
-	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
-	}
-
-	@Override
-	public void run(String... args) throws Exception{
-		Categoria cat1 = new Categoria(null, "Informática");
+    
+    public void instantiateTestDatabase() throws ParseException {
+        Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório");
 		Categoria cat3 = new Categoria(null, "Cama mesa e banho");
 		Categoria cat4 = new Categoria(null, "Eletrônicos");
@@ -155,5 +149,5 @@ public class DemoApplication implements CommandLineRunner{
 
 		itemPedidoRepository.saveAll(Arrays.asList(ip1,ip2,ip3));
 	}
-
+    
 }
