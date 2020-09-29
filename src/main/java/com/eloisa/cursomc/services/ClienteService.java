@@ -15,11 +15,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.eloisa.cursomc.domain.Cidade;
 import com.eloisa.cursomc.domain.Cliente;
 import com.eloisa.cursomc.domain.Endereco;
+import com.eloisa.cursomc.domain.enums.Perfil;
 import com.eloisa.cursomc.domain.enums.TipoCliente;
 import com.eloisa.cursomc.dto.ClienteDTO;
 import com.eloisa.cursomc.dto.ClienteNewDTO;
 import com.eloisa.cursomc.repositories.ClienteRepository;
 import com.eloisa.cursomc.repositories.EnderecoRepository;
+import com.eloisa.cursomc.security.UserSS;
+import com.eloisa.cursomc.services.exception.AuthorizationException;
 import com.eloisa.cursomc.services.exception.DataIntegrityException;
 import com.eloisa.cursomc.services.exception.ObjectNotFoundException;
 
@@ -36,6 +39,11 @@ public class ClienteService {
     private EnderecoRepository enderecoRepository;
 
     public Cliente find(Integer id){
+        UserSS user = UserService.authenticated();
+		if (user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+
         Optional<Cliente> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
                         "Objeto não encontrado! Id " + id + ", Tipo: " + Cliente.class.getName()));
