@@ -1,9 +1,4 @@
-package com.eoisapackage com.eloisa.cursomc.services.exception;
-
-public class FileException {
-    
-}
-.cursomc.services.exceptions;
+package com.eloisa.cursomc.services.exception;
 
 public class FileException extends RuntimeException {
 
